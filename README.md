@@ -1,3 +1,3 @@
 # NotesApp
 
-Small app where u can write notes with HTML markup and store them for where the user come back. 
+Small app where u can write new notes, save, edit and remove them.
