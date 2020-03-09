@@ -14,9 +14,13 @@ const notes = [
     {title: 'Third Post', content: 'Fsdfasdfasdfljagsdfpjagsdfuiagsd´fuiagsdfñiugasdisdfasdfasdfljagsdfpjagsdfuiagsd´fuiagsdfñiugasdisdfasdfasdfljagsdfpjagsdfuiagsd´fuiagsdfñiugasdisdfasdfasdfljagsdfpjagsdfuiagsd´fuiagsdfñiugasdie'}
 ];
 
+
 app.get('/', (req, res) => {
     res.render( "index.ejs", { notes })
 })
+
+
+
 
 app.get('/notes', (req, res) => {
     res.render('notes/notes.ejs', { notes })
@@ -27,8 +31,8 @@ app.post('/notes', (req, res) => {
         title: req.body.title,
         content: req.body.content
     }
-        notes.push(note);
-        res.json(note);
+    notes.push(note);
+    res.redirect('/notes')
 })
 
 

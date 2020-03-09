@@ -5,14 +5,15 @@ const submitButton = document.querySelector('.submitButton');
 const formNotes = document.querySelector('.formNotes');
 
 formNotes.addEventListener("submit", (e) => {
-    e.preventDefault();
+
+    const url = 'http://localhost:3000/notes';
 
     const data = {
         "title": titleInput.value,
         "content": contentInput.value,
       }
 
-    fetch('http://localhost:3000/notes', {
+    fetch(url , {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -20,9 +21,7 @@ formNotes.addEventListener("submit", (e) => {
         },
         body: JSON.stringify(data)
     })
-    .then(res => {
-        return res.json();
-    })
+    
 });
 
 
