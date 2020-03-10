@@ -1,0 +1,60 @@
+*{
+    padding: 0%;
+    margin: 0%;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(57, 92, 102);
+}
+
+.mainPageForm{
+    margin: 8%;
+    display: grid;
+    background-color: rgb(117, 165, 180);
+}
+
+.mainPageHeader{
+    text-align: center;
+    padding: 1rem;
+}
+
+.navButton{
+    margin: 0 4rem 0 4rem;
+    background-color: rgb(57, 92, 102);
+    border: none;
+    padding: 1rem;
+    border-radius: 50rem;
+    color: rgb(142, 198, 216); 
+    text-align: center;
+
+}
+
+
+.formNotes{
+    margin: 1rem 4rem 4rem 4rem;
+}
+
+.titleInput{
+    width: 22rem;
+}
+
+.mainPageLabel{
+    margin-top: 0.5rem;
+    letter-spacing: 2px;
+}
+
+.contentInput{
+    max-width: 32rem;
+    max-height: 12rem;
+}
+
+.submitButton{
+    margin-top: 0.5rem;
+    background-color: rgb(57, 92, 102);
+    border: none;
+    padding: 1rem;
+    border-radius: 50rem;
+    color: rgb(142, 198, 216); 
+    font-family: 'Montserrat', sans-serif;
+}
