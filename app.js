@@ -19,9 +19,6 @@ app.get('/', (req, res) => {
     res.render( "index.ejs", { notes })
 })
 
-
-
-
 app.get('/notes', (req, res) => {
     res.render('notes/notes.ejs', { notes })
 })
