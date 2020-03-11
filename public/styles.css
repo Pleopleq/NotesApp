@@ -27,9 +27,7 @@ body{
     border-radius: 50rem;
     color: rgb(142, 198, 216); 
     text-align: center;
-
 }
-
 
 .formNotes{
     margin: 1rem 4rem 4rem 4rem;
@@ -57,4 +55,36 @@ body{
     border-radius: 50rem;
     color: rgb(142, 198, 216); 
     font-family: 'Montserrat', sans-serif;
+}
+
+    /* NOTES STYLES */
+
+.notesPageMain{
+    margin: 8%;
+    display: grid;
+    background-color: rgb(117, 165, 180);
+}
+
+.notesHeader{
+    text-align: center;
+    padding: 1rem;
+}
+
+
+.noteList{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: grid;
+    grid-gap:2rem;
+}
+
+.note{
+    background-color: rgb(241, 226, 198);
+    padding: 0 2rem 4rem 2rem;
+    margin: 0 4rem 0 4rem;
+}
+
+.note h2{
+    text-align: center;
+    padding: 0.5rem 0 0.5rem 0;
 }

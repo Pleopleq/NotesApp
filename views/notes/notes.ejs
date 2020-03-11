@@ -4,19 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes App</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Heres your notes!</h1>
+<main class="notesPageMain">
 
-    <a href="/">Go back to homepage</a>
+    <h1 class="notesHeader">Heres your notes!</h1>
 
-    <% notes.forEach( (note) =>{ %>
-        <div class="note">
-            <h2><%= note.title %></h2>
-            <p><%= note.content %></p>
-        </div>
-   <% }) %>
+    <a href="/" class="navButton">Go to to homepage</a>
+
+    <div class="noteList">
+        <% notes.forEach( (note) =>{ %>
+            <div class="note">
+                <h2><%= note.title %></h2>
+                <p><%= note.content %></p>
+            </div>
+       <% }) %>
+    </div>
+</main>
 
 </body>
 </html>
