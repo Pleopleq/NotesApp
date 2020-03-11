@@ -1,7 +1,8 @@
 
+
+
 const titleInput = document.querySelector('.titleInput');
 const contentInput = document.querySelector('.contentInput');
-const submitButton = document.querySelector('.submitButton');
 const formNotes = document.querySelector('.formNotes');
 
 formNotes.addEventListener("submit", (e) => {
