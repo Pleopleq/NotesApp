@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
     res.render( "index.ejs", { notes })
 })
 
-    // Notes routes //
+    // Notes route //
 
 app.get('/notes', (req, res) => {
     res.render('notes/notes.ejs', { notes })
@@ -32,19 +32,17 @@ app.get('/notes', (req, res) => {
 app.post('/notes', (req, res) => {
     
     const id = crypto.randomBytes(16).toString('hex');
-    console.log(id);
 
     const note = {
         title: req.body.title,
         content: req.body.content,
         id : id
     }
-    console.log(note)
     notes.push(note);
     res.redirect('/notes')
 })
 
-    // Edit notes route
+    // Edit notes route //
 
 app.get('/notes/edit/:id', (req, res) => {
     const postId = req.params.id;

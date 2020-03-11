@@ -94,3 +94,21 @@ body{
     margin-left: 4rem;
     margin-right: 8rem;
 }
+
+.removeEdit{
+    display: flex;
+    justify-content: center;
+}
+
+.removeEdit i{
+    padding: 0 1rem 0 1rem;
+    font-size: 18px;
+}
+
+.removeEdit a{
+    color: black;
+}
+
+.removeEdit a:visited{
+    color: black;
+}
