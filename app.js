@@ -4,6 +4,20 @@ const app = express();
 const path = require('path');
 const crypto = require('crypto');
 const _ = require('lodash');
+const mongoose = require('mongoose');
+const MongoClient = require('mongodb').MongoClient;
+const noteSchema = require('./schema/notes.js')
+const uri = "mongodb+srv://pleopleq:test123@noteapp-4t67y.mongodb.net/test?retryWrites=true&w=majority";
+
+
+mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
+
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () =>{
+  console.log('Connected')
+});
 
 
 app.use(express.static(path.join(__dirname, 'src')));
@@ -21,13 +35,13 @@ const notes = [
 
 app.get('/', (req, res) => {
     res.render( "index.ejs", { notes })
-})
+});
 
     // Notes route //
 
 app.get('/notes', (req, res) => {
     res.render('notes/notes.ejs', { notes })
-})
+});
 
 app.post('/notes', (req, res) => {
     
@@ -40,7 +54,7 @@ app.post('/notes', (req, res) => {
     }
     notes.push(note);
     res.redirect('/notes')
-})
+});
 
     // Edit notes route //
 
@@ -48,7 +62,7 @@ app.get('/notes/edit/:id', (req, res) => {
     const postId = req.params.id;
     const found = _.find(notes , {'id': postId});
     res.render('notes/edit.ejs', { found })
-})
+});
 
 
 app.listen(3000, () => {

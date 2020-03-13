@@ -14,7 +14,7 @@
     <h1 class="mainPageHeader">Note app</h1>
     <a href="/notes"class="navButton">Go to your notes</a>
     <h2 class="editNoteHeader">Edit your note</h2>
-    <form action="/notes" class="formNotes">
+    <form action="/notes" class="formNotesEdit">
         <label for="title">
             <h2 class="mainPageLabel">Title</h2>
             <input type="text" name="title" class="titleInput" value="<%= found.title%>">
@@ -31,5 +31,6 @@
     </form>
 </main>
 
+    <script src="/edit.js"></script>
 </body>
 </html>
