@@ -95,6 +95,8 @@ body{
     margin-right: 8rem;
 }
 
+    /* Edit note styles */
+
 .removeEdit{
     display: flex;
     justify-content: center;
