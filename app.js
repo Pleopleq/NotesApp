@@ -93,6 +93,23 @@ app.post('/notes/:id', (req, res) =>{
     })
 })
 
+////////////////////
+//REMOVE NOTE ROUTE//
+/////////////////////
+
+app.get('/notes/:id/remove', (req, res) => {
+    const noteId = req.params.id;
+    Note.findByIdAndDelete(noteId ,(err, note) => {
+        if (err){
+            console.log(err);
+        } else {
+            note.remove();
+            res.redirect('/notes');
+        }
+      })
+    
+})
+
 
 app.listen(3000, () => {
     console.log('---------');

@@ -2,9 +2,22 @@
 const titleInput = document.querySelector('.titleInput');
 const contentInput = document.querySelector('.contentInput');
 const formNotesEdit = document.querySelector('.formNotesEdit');
-const editHeader = document.querySelector('.editNoteHeader');
+
+const alertNote = () =>{
+    const successAlert = document.createElement('p');
+    const alertText = document.createTextNode('Note successfully edit');
+    successAlert.appendChild(alertText);
+    formNotesEdit.appendChild(alertText);
+
+    setTimeout( () =>  { 
+        formNotesEdit.removeChild(alertText);
+    }, 1500);
+
+    formNotesEdit.appendChild(alertText);
+}
 
 formNotesEdit.addEventListener("submit", (e) => {
+    e.preventDefault();
 
     const url = formNotesEdit.action;
 
@@ -21,9 +34,5 @@ formNotesEdit.addEventListener("submit", (e) => {
         },
         body: JSON.stringify(data)
     })
+    alertNote();
 });
-
-const success = () =>{
-
-
-}
