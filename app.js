@@ -36,13 +36,19 @@ app.get('/', async (req, res) => {
     res.render( "index.ejs", { allNotes })
 });
 
-    // Notes route //
 
+// ///////////
+// Note list///
+// ////////////
 app.get('/notes', async (req, res) => {
 
     const allNotes = await Note.find(notes);
     res.render ('notes/notes.ejs', { allNotes })
 });
+
+/////////////////////////
+// Create Notes route //
+/////////////////////////
 
 app.post('/notes', (req, res) => {
 
@@ -61,7 +67,9 @@ app.post('/notes', (req, res) => {
     res.redirect('/notes')
 });
 
-    // Edit notes route //
+//////////////////////
+// Edit notes route //
+///////////////////////
 
 app.get('/notes/:id', async (req, res) => {
     const postId = req.params.id;
