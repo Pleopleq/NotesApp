@@ -1,13 +1,12 @@
 
-
-
 const titleInput = document.querySelector('.titleInput');
 const contentInput = document.querySelector('.contentInput');
-const formNotes = document.querySelector('.formNotes');
+const formNotesEdit = document.querySelector('.formNotesEdit');
+const editHeader = document.querySelector('.editNoteHeader');
 
-formNotes.addEventListener("submit", (e) => {
+formNotesEdit.addEventListener("submit", (e) => {
 
-    const url = 'http://localhost:3000/notes';
+    const url = formNotesEdit.action;
 
     const data = {
         "title": titleInput.value,
@@ -22,10 +21,9 @@ formNotes.addEventListener("submit", (e) => {
         },
         body: JSON.stringify(data)
     })
-    
 });
 
+const success = () =>{
 
 
-
-
+}

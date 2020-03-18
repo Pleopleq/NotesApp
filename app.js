@@ -9,6 +9,7 @@ const Note = require('./schema/notes.js');
 const uri = "mongodb+srv://pleo:test123@noteapp-4t67y.mongodb.net/test?retryWrites=true&w=majority";
 const db = mongoose.connection;
 
+mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -18,9 +19,8 @@ db.once('open', () =>{
 });
 
 
-mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
-
 app.use(express.static(path.join(__dirname, 'src')));
+app.use(express.static(path.join(__dirname, 'schema')));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
@@ -63,11 +63,27 @@ app.post('/notes', (req, res) => {
 
     // Edit notes route //
 
-app.get('/notes/edit/:id', (req, res) => {
+app.get('/notes/:id', async (req, res) => {
     const postId = req.params.id;
+    const allNotes = await Note.find(notes);
 
-    res.render('notes/edit.ejs')
+    const found = _.find(allNotes , {'id': postId});
+
+    res.render('notes/edit.ejs', { found , note_id: postId})
 });
+
+
+app.post('/notes/:id', (req, res) =>{
+    const noteId = req.params.id
+    
+    Note.findByIdAndUpdate(noteId, {title: req.body.title, content: req.body.content}, (err) =>{
+        if (err){
+            console.log(err);
+        } else {
+            res.redirect('/notes')
+        }
+    })
+})
 
 
 app.listen(3000, () => {

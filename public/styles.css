@@ -97,6 +97,10 @@ body{
 
     /* Edit note styles */
 
+.formNotesEdit{
+        margin: 1rem 4rem 4rem 4rem;
+}
+
 .removeEdit{
     display: flex;
     justify-content: center;

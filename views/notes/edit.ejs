@@ -9,22 +9,20 @@
 </head>
 <body>
     
-
+    
 <main class="mainPageForm">
     <h1 class="mainPageHeader">Note app</h1>
     <a href="/notes"class="navButton">Go to your notes</a>
     <h2 class="editNoteHeader">Edit your note</h2>
-    <form action="/notes" class="formNotesEdit">
+    <form action="/notes/<%= note_id %>" class="formNotesEdit">
         <label for="title">
             <h2 class="mainPageLabel">Title</h2>
-            <input type="text" name="title" class="titleInput" >
+            <input type="text" name="title" class="titleInput" value="<%= found.title %>">
         </label>
-
         <label for="content">
             <h2 class="mainPageLabel">Content</h2>
-            <textarea name="content" rows="4" cols="50" class="contentInput"></textarea>
+            <textarea name="content" rows="4" cols="50" class="contentInput"><%= found.content %></textarea>
         </label>
-
         <div>
             <input type="submit" value="Submit" class="submitButton">
         </div>    
