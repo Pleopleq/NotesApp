@@ -1,18 +1,44 @@
 
 
-
 const titleInput = document.querySelector('.titleInput');
 const contentInput = document.querySelector('.contentInput');
 const formNotes = document.querySelector('.formNotes');
 
-formNotes.addEventListener("submit", () => {
 
-    const url = 'http://localhost:3000/notes';
+const alertNote = (text) =>{
+    const successAlert = document.createElement('p');
+    const alertText = document.createTextNode(text);
+    successAlert.className = 'alert';
+    const alertTimeout= () => {
+        successAlert.appendChild(alertText);
+        formNotes.appendChild(successAlert); 
+        setTimeout ( () =>  { 
+            formNotes.removeChild(successAlert);
+        }, 2000); 
+    }
+    clearAlert();
+    alertTimeout();
+}
+
+const clearAlert = () => {
+    const currentAlert = document.querySelector('.alert');
+    if(currentAlert){
+        currentAlert.remove();
+    }
+}
+
+formNotes.addEventListener("submit", (e) => {
+    e.preventDefault()
+    const url = 'http://localhost:3000';
 
     const data = {
         "title": titleInput.value,
         "content": contentInput.value,
       }
+
+    if (data.title === '' || data.content === ''){
+        return alertNote('Please enter a title and content')
+    }
 
     fetch(url , {
         method: "POST",
@@ -22,5 +48,7 @@ formNotes.addEventListener("submit", () => {
         },
         body: JSON.stringify(data)
     })
-    
+    alertNote('Note was succesfully added!')
+    titleInput.value = '';
+    contentInput.value = '';
 });

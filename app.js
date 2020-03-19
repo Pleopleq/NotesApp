@@ -3,7 +3,6 @@ const bodyParser = require ('body-parser');
 const app = express();
 const path = require('path');
 const _ = require('lodash');
-const { body, validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 const Note = require('./schema/notes.js');
 
@@ -39,6 +38,25 @@ app.get('/', async (req, res) => {
     res.render( "index.ejs", { allNotes })
 });
 
+/////////////////////////
+// Create Notes route //
+/////////////////////////
+
+app.post('/',(req, res) => {
+    const title = req.body.title;
+    const content = req.body.content;
+    const note = new Note(
+        {
+            title:title,
+            content: content
+        }
+    );
+    note.save( (err) => {
+        if (err) return handleError(err);
+        console.log('Note saved')
+    });
+    res.redirect('/notes')
+});
 
 // ///////////
 // Note list///
@@ -49,35 +67,6 @@ app.get('/notes', async (req, res) => {
     res.render ('notes/notes.ejs', { allNotes })
 });
 
-/////////////////////////
-// Create Notes route //
-/////////////////////////
-
-app.post('/notes', [    
-    body('title').not().isEmpty().withMessage('Please fill all the inputs'),
-    body('content').not().isEmpty().withMessage('Please fill all the inputs!')
-],(req, res) => {
-
-    const title = req.body.title;
-    const content = req.body.content;
-    const errors = validationResult(req);
-
-    if (errors) {
-        console.log(errors);
-        return res.render('index.ejs')
-    }
-    const note = new Note(
-        {
-            title:title,
-            content: content
-        }
-    );
-    note.save( (err) => {
-        if (err) return handleError(err);
-        console.log('Note saved')
-        });
-        res.redirect('/notes')
-});
 
 //////////////////////
 // Edit notes route //
@@ -96,7 +85,6 @@ app.get('/notes/:id', async (req, res) => {
 app.post('/notes/:id', (req, res) =>{
 
     const noteId = req.params.id
-    const errors = validationResult(req);
     
     Note.findByIdAndUpdate(noteId, {title: req.body.title, content: req.body.content}, (err) =>{
         if (err){
