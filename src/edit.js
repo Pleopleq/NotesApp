@@ -3,17 +3,26 @@ const titleInput = document.querySelector('.titleInput');
 const contentInput = document.querySelector('.contentInput');
 const formNotesEdit = document.querySelector('.formNotesEdit');
 
-const alertNote = () =>{
+const alertNote = (text) =>{
     const successAlert = document.createElement('p');
-    const alertText = document.createTextNode('Note successfully edit');
-    successAlert.appendChild(alertText);
-    formNotesEdit.appendChild(alertText);
+    const alertText = document.createTextNode(text);
+    successAlert.className = 'alert';
+    const alertTimeout= () => {
+        successAlert.appendChild(alertText);
+        formNotesEdit.appendChild(successAlert); 
+        setTimeout ( () =>  { 
+            formNotesEdit.removeChild(successAlert);
+        }, 1500); 
+    }
+    clearAlert();
+    alertTimeout();
+}
 
-    setTimeout( () =>  { 
-        formNotesEdit.removeChild(alertText);
-    }, 1500);
-
-    formNotesEdit.appendChild(alertText);
+const clearAlert = () => {
+    const currentAlert = document.querySelector('.alert');
+    if(currentAlert){
+        currentAlert.remove();
+    }
 }
 
 formNotesEdit.addEventListener("submit", (e) => {
@@ -25,7 +34,10 @@ formNotesEdit.addEventListener("submit", (e) => {
         "title": titleInput.value,
         "content": contentInput.value,
       }
-
+      if (data.title === '' || data.content === ''){
+        return alertNote('Please enter a title and content')
+      }
+    
     fetch(url , {
         method: "POST",
         headers: {
@@ -34,5 +46,5 @@ formNotesEdit.addEventListener("submit", (e) => {
         },
         body: JSON.stringify(data)
     })
-    alertNote();
+    alertNote('Note successfully edit')
 });
